@@ -99,7 +99,7 @@ class TermenuAdapter(termenu.Termenu):
         return options
 
     def _decorate_flags(self, index):
-        flags = super()._decorate_flags(index)
+        flags = super(TermenuAdapter, self)._decorate_flags(index)
         flags['highlighted'] = self._highlighted and flags['selected']
         return flags
 
@@ -243,9 +243,9 @@ class TermenuAdapter(termenu.Termenu):
     def _on_insert(self):
         option = self._get_active_option()
         if option.markable:
-            super()._on_space()
+            super(TermenuAdapter, self)._on_space()
         else:
-            super()._on_down()
+            super(TermenuAdapter, self)._on_down()
 
     def _on_end(self):
         height = min(self.height, len(self.options))
@@ -595,7 +595,7 @@ class AppMenu(object):
     @staticmethod
     def wait_for_keys(keys=("enter", "esc"), prompt=None):
         if prompt:
-            print(Colorized(prompt), end=" ", flush=True)
+            print Colorized(prompt),
             ansi.show_cursor()
 
         keys = set(keys)
